@@ -1,28 +1,38 @@
-envguard
+# envguard
 
-Validate .env files against a schema. Catch missing or malformed variables before they crash production.
-Install
+Validate `.env` files against a schema. Catch missing or malformed variables before they crash production.
 
+## Install
+
+```bash
 npm install envguard
+```
 
-Quick Start
+## Quick Start
 
-Generate a schema from your existing .env:
+Generate a schema from your existing `.env`:
 
+```bash
 npx envguard --init > .env.schema.json
+```
 
-Validate your .env:
+Validate your `.env`:
 
+```bash
 npx envguard
+```
 
-Or validate against .env.example directly:
+Or validate against `.env.example` directly:
 
+```bash
 npx envguard --example .env.example
+```
 
-Schema Format
+## Schema Format
 
-.env.schema.json:
+`.env.schema.json`:
 
+```json
 {
   "DATABASE_URL": {
     "required": true,
@@ -41,17 +51,22 @@ Schema Format
     "required": false
   }
 }
+```
 
-Supported Types
-Type 	Validates
-string 	Any non-empty value
-number 	Parseable as a number
-boolean 	true, false, 1, 0, yes, no
-url 	Valid URL (parsed by new URL())
-email 	Basic email format
-port 	Integer between 1 and 65535
-Programmatic Usage
+## Supported Types
 
+| Type | Validates |
+|------|-----------|
+| `string` | Any non-empty value |
+| `number` | Parseable as a number |
+| `boolean` | `true`, `false`, `1`, `0`, `yes`, `no` |
+| `url` | Valid URL (parsed by `new URL()`) |
+| `email` | Basic email format |
+| `port` | Integer between 1 and 65535 |
+
+## Programmatic Usage
+
+```typescript
 import { parseEnvFile, validate } from "envguard";
 import { readFileSync } from "fs";
 
@@ -64,9 +79,11 @@ if (!result.valid) {
   console.error("Errors:", result.errors);
   process.exit(1);
 }
+```
 
-CLI Options
+## CLI Options
 
+```
 envguard [options] [env-file]
 
   --schema <file>    Schema file (default: .env.schema.json)
@@ -74,7 +91,8 @@ envguard [options] [env-file]
   --init             Generate schema from current .env
   --strict           Treat warnings as errors
   --quiet            Only output errors
+```
 
-License
+## License
 
 MIT

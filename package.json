@@ -1,0 +1,22 @@
+{
+  "name": "envguard",
+  "version": "0.1.0",
+  "description": "Validate .env files against a schema. Catch missing vars before they crash production.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "envguard": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/cli.ts",
+    "test": "node --test src/*.test.ts"
+  },
+  "keywords": ["env", "dotenv", "validation", "schema", "cli", "config"],
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "tsx": "^4.19.0"
+  }
+}
